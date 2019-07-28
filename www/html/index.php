@@ -1,11 +1,20 @@
 <?php
+
+
+//require_once '/path/to/your-project/vendor/autoload.php';
+
 $url = "http://localhost:8080";
 session_start();
 
-// algoritme pour la connexion via google
-//$_SESSION["user"] si connecter 
+// algorithme pour la connexion via google
+//$_SESSION["user"] si connecté
+$client = new Google_Client();
+dd($client);
+$client->setAuthConfig('www/html/clientCredentials.json');
+$client->addScope(Google_Service_Drive::DRIVE);
 
-
+//$redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+//$client->setRedirectUri($redirect_uri);
 
 if (isset($_SESSION["user"])) {
     header('Location: ' . $url . "/protected.php");
